@@ -1,5 +1,6 @@
 CC = gcc
 SRC = school.c main.c
+OBJ = $(SRC:.c=.o)
 NAME = school
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
@@ -7,19 +8,14 @@ CFLAGS = -Wall -Werror -Wextra -pedantic
 
 all: $(NAME)
 
-# Rule to compile .c files into .o files
-%.o: %.c m.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Linking rule
-$(NAME): $(SRC:.c=.o)
-	$(CC) $^ -o $@
+$(NAME): $(OBJ) m.h
+	$(CC) $(OBJ) -o $(NAME)
 
 clean:
-	-$(RM) *~ $(NAME) $(SRC:.c=.o)
+	-$(RM) *~ $(NAME) $(OBJ)
 
 oclean:
-	-$(RM) $(SRC:.c=.o)
+	-$(RM) $(OBJ)
 
 fclean: clean oclean
 
