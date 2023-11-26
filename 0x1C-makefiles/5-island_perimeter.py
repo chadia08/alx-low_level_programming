@@ -13,7 +13,6 @@ def island_perimeter(grid):
     Returns:
     - int: Perimeter of the island.
     """
-
     perimeter = 0
 
     rows = len(grid)
